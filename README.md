@@ -16,16 +16,8 @@ python3 -m http.server 9002 --directory s2
 ```
 
 ### Конфигурация HAProxy
-```cfg
-frontend fe_l4_rr
-    bind *:8080
-    default_backend be_l4_rr
 
-backend be_l4_rr
-    balance roundrobin
-    server py1 127.0.0.1:9001 check
-    server py2 127.0.0.1:9002 check
-```
+[Файл конфигурации HAProxy Задание 1](task1/haproxy.cfg)
 
 ### Проверка
 ```bash
@@ -60,23 +52,8 @@ python3 -m http.server 9103 --directory s3
 ```
 
 ### Конфигурация HAProxy
-```cfg
-frontend fe_l7_host_only
-    bind *:8081
 
-    acl host_example hdr_beg(host) -i example.local
-
-    http-request return status 403 content-type text/plain \
-        lf-string "Forbidden: use Host example.local\n" unless host_example
-
-    use_backend be_weighted if host_example
-
-backend be_weighted
-    balance roundrobin
-    server s1 127.0.0.1:9101 weight 2 check
-    server s2 127.0.0.1:9102 weight 3 check
-    server s3 127.0.0.1:9103 weight 4 check
-```
+[Файл конфигурации HAProxy Задание 2](task2/haproxy.cfg)
 
 ### Проверка без домена
 ```bash
