@@ -82,7 +82,6 @@ backend be_weighted
 ```bash
 curl -i http://127.0.0.1:8081/
 ```
-```md
 **Скриншот запроса без указания домена example.local:**
 
 ![403 without Host](img/task2-no-host.png)
@@ -101,7 +100,6 @@ done
 Запросы успешно балансируются между backend-серверами.
 Частота ответов соответствует заданным весам (2 / 3 / 4).
 
-```md
 **Скриншот успешной обработки запросов с доменом example.local:**
 
 ![With Host example.local](img/task2-with-host.png)
